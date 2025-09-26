@@ -1,12 +1,12 @@
 import express from "express";
 import bcrypt from "bcryptjs";
-import DoctorService from "../services/DoctorService.js";
+import doctorService from "../services/DoctorService.js";
 
 let router = express.Router();
 
 router.get("/doctors", async (req, res) => {
   try {
-    const doctors = await DoctorService.getAllDoctors();
+    const doctors = await doctorService.getAllDoctors();
     res.send(doctors);
   } catch (error) {
     console.error(error);
@@ -17,7 +17,7 @@ router.get("/doctors", async (req, res) => {
 router.get("/getDoctor/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const doctor = await DoctorService.getDoctor(id);
+    const doctor = await doctorService.getDoctor(id);
     res.send(doctor);
   } catch (error) {
     console.error(error);
@@ -37,7 +37,7 @@ router.post("/postDoctor", async function (req, res) {
   } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const doctor = await DoctorService.saveDoctor({
+    const doctor = await doctorService.saveDoctor({
       name,
       login,
       password: hashedPassword,
@@ -66,7 +66,7 @@ router.put("/doctors/:id", async (req, res) => {
   } = req.body;
 
   try {
-    const doctor = await DoctorService.updateDoctor(id, {
+    const doctor = await doctorService.updateDoctor(id, {
       name,
       login,
       password,
@@ -86,7 +86,7 @@ router.delete("/doctors/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const doctor = await DoctorService.deleteDoctor(id);
+    const doctor = await doctorService.deleteDoctor(id);
     res.send(doctor);
   } catch (error) {
     console.error(error);

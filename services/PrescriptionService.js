@@ -1,4 +1,5 @@
 import PrescriptionRepository from "../repositories/PrescriptionRepository.js";
+
 const getAllPrescriptions = async () => {
   return PrescriptionRepository.getAllPrescriptions();
 };

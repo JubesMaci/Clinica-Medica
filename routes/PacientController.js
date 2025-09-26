@@ -23,6 +23,16 @@ router.get("/getPacient/:id", async (req, res) => {
   }
 });
 
+router.get("/pacients", async (req, res) => {
+  try {
+    const pacients = await pacientService.getAllPacients();
+    res.send(pacients);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+});
+
 router.post("/postPacient", async (req, res) => {
   try {
     const { name, birthDate, email, phone } = req.body;

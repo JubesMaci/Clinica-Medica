@@ -43,7 +43,7 @@ router.put("/appointment/:id", async (req, res) => {
   const { id } = req.params;
   const { date, doctorId, pacientId } = req.body;
   try {
-    const appointment = await appointmentService.updateAppointment({
+    const appointment = await appointmentService.updateAppointment(id, {
       date,
       doctorId,
       pacientId,
@@ -57,11 +57,12 @@ router.put("/appointment/:id", async (req, res) => {
 
 router.delete("/appointment/:id", async (req, res) => {
   const { id } = req.params;
+
   try {
-    const appointment = await appointmentService.deleteAppointment({ id });
+    const appointment = await appointmentService.deleteAppointment(id);
     res.send(appointment);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send(error);
   }
 });

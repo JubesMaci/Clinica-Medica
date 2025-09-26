@@ -1,12 +1,9 @@
 import bcrypt from "bcryptjs";
 import express from "express";
-import doctorService from "../services/DoctorService.js";
 import appointmentController from "./AppointmentController.js";
 import doctorController from "./DoctorController.js";
 import pacientController from "./PacientController.js";
 import prescriptionController from "./PrescriptionController.js";
-
-// import jwt from "jsonwebtoken";
 
 let router = express.Router();
 

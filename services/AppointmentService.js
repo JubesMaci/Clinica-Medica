@@ -1,35 +1,26 @@
-import AppointmentRepository from "../repositories/AppointmentRepository.js";
+import appointmentRepository from "../repositories/AppointmentRepository.js";
 
-const getAllAppointments = async () => {
-  return AppointmentRepository.getAllAppointments();
-};
+const getAllAppointments = () => appointmentRepository.getAllAppointments();
 
-const getAppointment = async (id) => {
-  return AppointmentRepository.getAppointment(id);
-};
+const getAppointment = (id) => appointmentRepository.getAppointment(id);
 
-const saveAppointment = async ({ date, doctorId, pacientId }) => {
-  return AppointmentRepository.saveAppointment({ date, doctorId, pacientId });
-};
+const saveAppointment = ({ date, doctorId, pacientId }) =>
+  appointmentRepository.saveAppointment({ date, doctorId, pacientId });
 
 const updateAppointment = async (id, { date, doctorId, pacientId }) => {
-  return AppointmentRepository.updateAppointment(id, {
+  return await appointmentRepository.updateAppointment(id, {
     date,
     doctorId,
     pacientId,
   });
 };
 
-const deleteAppointment = async (id) => {
-  return AppointmentRepository.deleteAppointment(id);
-};
+const deleteAppointment = (id) => appointmentRepository.deleteAppointment(id);
 
-const appointmentService = {
+export default {
   getAllAppointments,
   getAppointment,
   saveAppointment,
   updateAppointment,
   deleteAppointment,
 };
-
-export default appointmentService;
