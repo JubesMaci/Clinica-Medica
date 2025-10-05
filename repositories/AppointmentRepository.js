@@ -12,20 +12,20 @@ const getAppointment = async (id) => {
   }
 };
 
-const saveAppointment = async ({ date, doctorId, pacientId }) => {
+const saveAppointment = async ({ date, doctorId, patientId }) => {
   try {
-    const prescription = new Appointment({ date, doctorId, pacientId });
+    const prescription = new Appointment({ date, doctorId, patientId });
     return await prescription.save();
   } catch (error) {
     throw new Error(error);
   }
 };
 
-const updateAppointment = async (id, { date, doctorId, pacientId }) => {
+const updateAppointment = async (id, { date, doctorId, patientId }) => {
   try {
     return await Appointment.findByIdAndUpdate(
       id,
-      { date, doctorId, pacientId },
+      { date, doctorId, patientId },
       { new: true }
     );
   } catch (error) {

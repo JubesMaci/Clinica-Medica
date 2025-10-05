@@ -1,5 +1,5 @@
 import express from "express";
-import pacientService from "../services/PacientService.js";
+import patientService from "../services/PatientService.js";
 
 let router = express.Router();
 
@@ -13,27 +13,27 @@ function sendError(res, err) {
   return res.status(status).json({ error: msg, detail });
 }
 
-router.get("/getPacient/:id", async (req, res) => {
+router.get("/getPatient/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const pacient = await pacientService.getPacient(id);
-    res.send(pacient);
+    const patient = await patientService.getPatient(id);
+    res.send(patient);
   } catch (error) {
     sendError(res, error);
   }
 });
 
-router.get("/pacients", async (req, res) => {
+router.get("/patients", async (req, res) => {
   try {
-    const pacients = await pacientService.getAllPacients();
-    res.send(pacients);
+    const patients = await patientService.getAllPatients();
+    res.send(patients);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);
   }
 });
 
-router.post("/postPacient", async (req, res) => {
+router.post("/postPatient", async (req, res) => {
   try {
     const { name, birthDate, email, phone } = req.body;
 
@@ -43,39 +43,39 @@ router.post("/postPacient", async (req, res) => {
       throw err;
     }
 
-    const pacient = await pacientService.savePacient({
+    const patient = await patientService.savePatient({
       name,
       birthDate,
       email,
       phone,
     });
-    return res.status(201).json(pacient);
+    return res.status(201).json(patient);
   } catch (error) {
     return sendError(res, error);
   }
 });
 
-router.put("/pacient/:id", async (req, res) => {
+router.put("/patient/:id", async (req, res) => {
   const { id } = req.params;
   const { name, birthDate, email, phone } = req.body;
   try {
-    const pacient = await pacientService.updatePacient(id, {
+    const patient = await patientService.updatePatient(id, {
       name,
       birthDate,
       email,
       phone,
     });
-    res.send(pacient);
+    res.send(patient);
   } catch (error) {
     sendError(res, error);
   }
 });
 
-router.delete("/pacient/:id", async (req, res) => {
+router.delete("/patient/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const pacient = await pacientService.deletePacient(id);
-    res.send(pacient);
+    const patient = await patientService.deletePatient(id);
+    res.send(patient);
   } catch (error) {
     sendError(res, error);
   }

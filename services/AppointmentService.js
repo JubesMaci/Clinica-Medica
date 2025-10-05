@@ -4,14 +4,14 @@ const getAllAppointments = () => appointmentRepository.getAllAppointments();
 
 const getAppointment = (id) => appointmentRepository.getAppointment(id);
 
-const saveAppointment = ({ date, doctorId, pacientId }) =>
-  appointmentRepository.saveAppointment({ date, doctorId, pacientId });
+const saveAppointment = ({ date, doctorId, patientId }) =>
+  appointmentRepository.saveAppointment({ date, doctorId, patientId });
 
-const updateAppointment = async (id, { date, doctorId, pacientId }) => {
+const updateAppointment = async (id, { date, doctorId, patientId }) => {
   return await appointmentRepository.updateAppointment(id, {
     date,
     doctorId,
-    pacientId,
+    patientId,
   });
 };
 
