@@ -17,6 +17,8 @@ async function start() {
 
     console.log("MongoDB conectado com sucesso!");
 
+    app.use(express.json());
+
     app.use("/", router);
 
     app.listen(3001, () => {
