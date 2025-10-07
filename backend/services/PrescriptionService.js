@@ -1,11 +1,10 @@
 import PrescriptionRepository from "../repositories/PrescriptionRepository.js";
-import AppointmentService from "../services/AppointmentService.js";
-import PatientService from "../services/AppointmentService.js";
-import DoctorService from "../services/DoctorService.js";
+import AppointmentService from "./AppointmentService.js";
+import PatientService from "./AppointmentService.js";
+import DoctorService from "./DoctorService.js";
 
 import fs from "fs";
 import PDFDocument from "pdfkit";
-
 
 const getAllPrescriptions = async () => {
   return PrescriptionRepository.getAllPrescriptions();
@@ -29,14 +28,15 @@ const savePrescription = async (data) => {
 
 const updatePrescription = async (
   id,
-  { date, appointmentId, medicine, dosage, instructions }
+  { date, appointmentId, medicine, dosage, instructions, file }
 ) => {
-  return PrescriptionRepository.updatePrescription(id, {
+  return await PrescriptionRepository.updatePrescription(id, {
     date,
     appointmentId,
     medicine,
     dosage,
     instructions,
+    file,
   });
 };
 

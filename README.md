@@ -6,11 +6,8 @@ Atualmente, o sistema implementa um CRUD básico de agendamentos, com rotas vali
 🚀 Tecnologias utilizadas
 
 Node.js
-
 Express
-
 MongoDB
-
 Postman
 
 📌 Status do projeto

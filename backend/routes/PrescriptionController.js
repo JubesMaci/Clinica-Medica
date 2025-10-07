@@ -1,7 +1,50 @@
 import express from "express";
 import prescriptionService from "../services/PrescriptionService.js";
+import multer from "multer";
+import path from "path";
+import process from "process";
 
 let router = express.Router();
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, ".MediApp/prescriptions/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+router.post(
+  "/uploadPrescription/:id",
+  upload.single("file"),
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      let prescription = await prescriptionService.getPrescription(id);
+      const file = "./MediApp/prescriptions/" + req.file.originalname;
+      prescription = await prescriptionService.updatePrescription(id, { file });
+
+      res.status(200).send(prescription);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  }
+);
+
+router.get("/readPrescription/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const prescription = await prescriptionService.getPrescription(id);
+    let filePath = path.resolve(process, cwd() + "/../" + prescription.file);
+    res.status(200).sendFile(filePath);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+});
 
 function sendError(res, err) {
   const status = err.status || 500;

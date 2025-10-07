@@ -1,2 +1,18 @@
-/node_modules
-package-lock.json
+cat > .gitignore << 'EOF'
+# Dependências e builds em qualquer subpasta
+**/node_modules/
+**/.next/
+**/out/
+**/dist/
+**/build/
+**/.turbo/
+**/.vercel/
+
+# Logs
+**/npm-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+
+# Ambiente
+**/.env
+**/.env.*

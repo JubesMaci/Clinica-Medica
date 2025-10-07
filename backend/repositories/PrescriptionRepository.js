@@ -1,5 +1,5 @@
 import Prescription from "../models/Prescription.js";
-import mongoose from "mongoose";
+import mongoose, { trusted } from "mongoose";
 
 const getAllPrescriptions = async () => {
   return await Prescription.find();
@@ -27,12 +27,19 @@ const savePrescription = async ({
   return await prescription.save(); // <-- aqui era Prescription.save()
 };
 
-const updatePrescription = async (id, updateData) => {
-  if (!mongoose.isValidObjectId(id)) throw new Error("Invalid id");
-  return await Prescription.findByIdAndUpdate(id, updateData, {
-    new: true,
-    runValidators: true,
-  });
+const updatePrescription = async (
+  id,
+  { date, appointmentId, medicine, dosage, instructions, file }
+) => {
+  try {
+    return await Prescription.findByIdAndUpdate(
+      id,
+      { date, appointmentId, medicine, dosage, instructions, file },
+      { new: true }
+    );
+  } catch (error) {
+    return new Error(error);
+  }
 };
 
 const deletePrescription = async (id) => {

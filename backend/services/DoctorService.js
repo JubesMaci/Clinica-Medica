@@ -60,4 +60,4 @@ const doctorService = {
   getDoctorByLogin,
 };
 
-export default DoctorService;
+export default doctorService;
