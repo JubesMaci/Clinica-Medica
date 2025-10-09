@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import pkg from "body-parser";
 import router from "./routes/router.js";
+import db from "./database/database.js";
+import cors from "cors";
 
 const app = express();
 const { json, urlencoded } = pkg;
@@ -20,6 +22,7 @@ async function start() {
     app.use(express.json());
 
     app.use("/", router);
+    app.use(cors());
 
     app.listen(3001, () => {
       console.log("Listening to port 3001");

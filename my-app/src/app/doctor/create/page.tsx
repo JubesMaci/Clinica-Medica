@@ -1,9 +1,9 @@
-import React from "react";
 
-export default function DoctorCreate (){
-    return(
-        <>
-            <h1>Create Doctor Page</h1>
-        </>
-    )
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+
+export default function DoctorCreate() {
+
+   
+    
 }
