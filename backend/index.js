@@ -1,15 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
-import pkg from "body-parser";
 import router from "./routes/router.js";
-import db from "./database/database.js";
 import cors from "cors";
 
-const app = express();
-const { json, urlencoded } = pkg;
+if (mongoose.connection.readyState !== 1) {
+  await mongoose.connect("mongodb://127.0.0.1:27017/mediapp", {
+    serverSelectionTimeoutMS: 5000,
+  });
+}
 
-app.use(json());
-app.use(urlencoded({ extended: true }));
+const app = express();
 
 async function start() {
   try {
@@ -19,10 +19,12 @@ async function start() {
 
     console.log("MongoDB conectado com sucesso!");
 
+    app.use(cors());
+
     app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
 
     app.use("/", router);
-    app.use(cors());
 
     app.listen(3001, () => {
       console.log("Listening to port 3001");
@@ -32,5 +34,4 @@ async function start() {
     process.exit(1);
   }
 }
-
 start();
