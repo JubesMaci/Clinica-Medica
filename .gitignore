@@ -1,5 +1,11 @@
-cat > .gitignore << 'EOF'
-# Dependências e builds em qualquer subpasta
+# ========================================================
+# 🌐 MediApp - Configuração de .gitignore unificada
+# Para projetos com Next.js (frontend) e Node.js (backend)
+# ========================================================
+
+# ==============================
+# 📦 Dependências e builds
+# ==============================
 **/node_modules/
 **/.next/
 **/out/
@@ -7,12 +13,65 @@ cat > .gitignore << 'EOF'
 **/build/
 **/.turbo/
 **/.vercel/
+**/.cache/
 
-# Logs
+# ==============================
+# ⚙️ Logs e debug
+# ==============================
 **/npm-debug.log*
 **/yarn-error.log*
 **/pnpm-debug.log*
+**/yarn-debug.log*
+**/vite-debug.log*
+**/bun-debug.log*
 
-# Ambiente
+# ==============================
+# 🧩 Arquivos de ambiente (.env)
+# ==============================
+# ⚠️ Nunca subir variáveis sensíveis ao GitHub!
 **/.env
 **/.env.*
+**/.env.local
+
+# ==============================
+# 🧪 Testes e coverage
+# ==============================
+**/coverage/
+**/.nyc_output/
+**/reports/
+
+# ==============================
+# 💻 IDEs e sistemas operacionais
+# ==============================
+**/.DS_Store
+**/Thumbs.db
+**/.vscode/
+**/.idea/
+*.swp
+
+# ==============================
+# 🚀 Vercel / Deploy
+# ==============================
+**/.vercel/
+.vercel
+
+# ==============================
+# 🧱 TypeScript / Next.js
+# ==============================
+**/*.tsbuildinfo
+**/next-env.d.ts
+
+# ==============================
+# 🔐 Certificados e chaves
+# ==============================
+*.pem
+*.key
+*.crt
+
+# ==============================
+# 🪣 Misc 
+# ==============================
+**/.eslintcache
+**/.stylelintcache
+**/.parcel-cache
+**/.envrc
