@@ -34,7 +34,7 @@ export default function DoctorCreate() {
                 phone: phone
             }
 
-            const add = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/postDoctor`, {
+            const add = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
